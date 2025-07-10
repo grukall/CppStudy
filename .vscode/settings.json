@@ -1,0 +1,27 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "algorithm": "cpp",
+        "atomic": "cpp",
+        "barrier": "cpp",
+        "condition_variable": "cpp",
+        "future": "cpp",
+        "latch": "cpp",
+        "iosfwd": "cpp",
+        "tuple": "cpp",
+        "iomanip": "cpp",
+        "string_view": "cpp",
+        "regex": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "array": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp"
+    }
+}
