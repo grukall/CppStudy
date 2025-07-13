@@ -7,6 +7,9 @@ class MyString
     private:
     protected:
     public:
+
+        //명시적 변환 지정, 암시적 변환 방지 (ex MyString s = 5 -> Error)
+        explicit MyString(int capacity);
         MyString(char c);
         MyString(const char* str);
 
@@ -39,6 +42,10 @@ class MyString
         int find(int find_from, char c) const;
 
         int compare(const MyString& str);
+
+
+        /*-------- Operator Overloading --------- */
+        bool operator==(MyString &str);
 
 };
 

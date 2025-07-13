@@ -7,6 +7,13 @@ MyString::~MyString()
     delete[] string_content;
 }
 
+MyString::MyString(int capacity)
+{
+    string_content = new char[capacity];
+    string_length = 0;
+    memory_capacity = capacity;
+}
+
 MyString::MyString(char c)
 {
     string_content = new char[1];
@@ -181,17 +188,33 @@ MyString &MyString::erase(int loc, int num)
 int MyString::find(int find_from, const MyString &str) const
 {
     if (str.string_length == 0) return -1;
-    for (int i = find_from; i < string_length - str.string_length; i++)
-    {
-        int j;
-        for (j = i; j < str.string_length; j++)
-        {
-            if (string_content[i + j] != str.string_content[j])
-                break;
-        }
 
-        if (j == str.string_length)
-            return i;
+    int pi[str.string_length] = {0, };
+    
+    int j = 0;
+    for (int i = 1; i < str.string_length; i++)
+    {
+        while (str.string_content[i] != str.string_content[j] && j > 0)
+            j = pi[j-1];
+        
+        if (str.string_content[i] == str.string_content[j])
+            j++;
+    }
+
+    j = 0;
+    for (int i = find_from; i < string_length; i++)
+    {
+        while (j > 0 && string_content[i]  != str.string_content[j])
+            j = pi[j-1];
+        
+        if (string_content[i] == str.string_content[j])
+        {
+            if (j == str.string_length - 1)
+            {
+                return i-str.string_length+1;
+            }
+            else j++;
+        }
     }
 
     return -1;
@@ -227,9 +250,23 @@ int MyString::compare(const MyString &str)
         return -1;
 }
 
-int main() {
-  MyString str1("abcdef");
-  MyString str2("abcde");
+bool MyString::operator==(MyString &str)
+{
+    return !compare(str);
+}
 
-  std::cout << "str1 and str2 compare : " << str1.compare(str2) << std::endl;
+int main() {
+  MyString str1("a word");
+  MyString str2("sentence");
+  MyString str3("sentence");
+
+  if (str1 == str2)
+    std::cout << "str1 와 str2 같다." << std::endl;
+  else
+    std::cout << "st1 와 str2 는 다르다." << std::endl;
+
+  if (str2 == str3)
+    std::cout << "str2 와 str3 는 같다." << std::endl;
+  else
+    std::cout << "st2 와 str3 는 다르다" << std::endl;
 }
